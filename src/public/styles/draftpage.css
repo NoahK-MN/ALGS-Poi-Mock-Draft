@@ -1,0 +1,102 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+    margin-bottom: 20px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: rgb(60,60,60);
+}
+.sp-pois-container, .we-pois-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin: 10px;
+    margin-bottom: 40px;
+}
+.sp-poi-btn, .we-poi-btn{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color .15s;
+    color: white;
+}
+.sp-poi-btn{
+    background-color: rgba(255,100,100);
+}
+.sp-poi-button:hover{
+    background-color: rgba(255,0,0,.25);
+}
+.we-poi-btn{
+    background-color: rgba(100,100,255);
+}
+.we-poi-btn:hover{
+    background-color: rgba(0,0,255,.25);
+}
+.is-drafted{
+    opacity: .5;
+    cursor: not-allowed;
+}
+.team-drafting{
+    font-weight: bold;
+    background-color: gold;
+}
+.team-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 15px; /*Matches margin of sp-container + sp-button*/
+}
+.team-title{
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+.group-info{
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+}
+.site-title{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 23px;
+}
+.group1{
+    margin-right: 5px;
+}
+.group2{
+    margin-left: 5px;
+}
+.view-drafts-btn{
+    margin-left: 5px;
+}
+.reset-btn{
+    margin-left: 15px;
+}
+.login-buttons{
+    display: flex;
+    align-items: center;
+    margin-right: 23px;
+}
+.user-name{
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.map-title{
+    margin-left: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(255,50,50);
+    display: inline-block;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+.we-map-title{
+    background-color: rgb(50,50,255);
+}

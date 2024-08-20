@@ -1,4 +1,5 @@
 import { Poi } from "./poi.js";
+import { group1, group2 } from "./draft-page.js";
 export let wePoiArray, spPoiArray;
 
 export function loadPoiArrays(){
@@ -20,25 +21,37 @@ export function generatePoiArrays(){
         'Launch Pad', 'Devastated Coast', 'Echo HQ', 'Coastal Camp', 'The Pylon', 'Jurassic', 'Lift'];
     
     const mappedWeArray = newWePoiArray.map(poiName => { //map the arrays so our poi arrays for each map contain Poi objects
-        return Poi(poiName);
+        return Poi(poiName, 'we');
     });
     const mappedSpArray = newSpPoiArray.map(poiName => {
-        return Poi(poiName);
+        return Poi(poiName, 'sp');
     });
     savePoisToStorage(mappedWeArray, mappedSpArray);
     return[mappedWeArray, mappedSpArray];
 }
 
 function savePoisToStorage(weArray, spArray){
-    localStorage.setItem('we-poi-array', JSON.stringify(weArray));
-    localStorage.setItem('sp-poi-array', JSON.stringify(spArray));
+    localStorage.setItem(`we-poi-array${group1}${group2}`, JSON.stringify(weArray));
+    localStorage.setItem(`sp-poi-array${group1}${group2}`, JSON.stringify(spArray));
 }
 
 function getPoisFromStorage(){
-    return [JSON.parse(localStorage.getItem(`we-poi-array`)), JSON.parse(localStorage.getItem(`sp-poi-array`))];
+    return [JSON.parse(localStorage.getItem(`we-poi-array${group1}${group2}`)), JSON.parse(localStorage.getItem(`sp-poi-array${group1}${group2}`))];
 }
 
 function removePoisFromStorage(){
-    localStorage.removeItem('we-poi-array');
-    localStorage.removeItem('sp-poi-array');
+    localStorage.removeItem(`we-poi-array${group1}${group2}`);
+    localStorage.removeItem(`sp-poi-array${group1}${group2}`);
+}
+
+export function savePois(){
+    savePoisToStorage(wePoiArray, spPoiArray);
+}
+export function resetPois(){
+    removePoisFromStorage();
+    loadPoiArrays();
+}
+
+export function findPoi(poiName){ //finds our poi from one of the two arrays
+    return wePoiArray.find(poi => poi.poiName === poiName) || spPoiArray.find(poi => poi.poiName === poiName); 
 }

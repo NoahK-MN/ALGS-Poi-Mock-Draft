@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles/draftpage.css">
 </head>
 <body>
     <div style="display:flex;">
@@ -11,8 +12,15 @@
         <div class="versus"> vs. </div>
         <div class="group2"><%= locals.group2 %></div>
     </div>
-    <div class="poi-container we-poi-container"></div>
-    <div class="poi-container we-poi-container"></div>
+    <div class="map-title sp-map-title">Stormpoint Pois</div>
+    <div class="sp-pois-container"></div>
+    <div class="map-title we-map-title">World's Edge Pois</div>
+    <div class="we-pois-container"></div>
+    <button class="btn reset-team-order-btn">Reset Team Order</button>
+    <button class="btn reset-team-picks-btn">Reset Team Picks</button>
+    <button class="btn undo-btn">Undo Previous Pick</button>
+    <button class="btn save-draft-btn">Save Draft</button>
+    <div class="index"></div>
     <div class="team-container"></div>
     <script type="module" src="/scripts/draft-page.js"></script>
 </body>

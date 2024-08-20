@@ -1,11 +1,9 @@
-import { Team } from "./team.js";
+import { Team, undraftFirstPick, undraftSecondPick } from "./team.js";
+import { group1, group2 } from "./draft-page.js";
 export let teamArray;
-
-loadTeamArray();
 
 export function loadTeamArray(){
     teamArray = getTeamsFromStorage() || generateTeamArray();
-    console.log(teamArray)
 }
 
 function generateTeamArray(){
@@ -14,8 +12,6 @@ function generateTeamArray(){
         'B' : ['Moist', 'LG', 'TSM', 'Complexity', 'Bleed', 'EEC', 'MPIRE', 'Fluffy Aimers', 'NGNL', 'Bored'],
         'C' : ['Cloud9', 'DSG', 'Liquid', 'Furia', 'Vanity','N8V', 'Oblivion', 'Flat', 'Stallions', 'Tempr']
     };
-    const group1 = document.querySelector('.group1').innerText;
-    const group2 = document.querySelector('.group2').innerText;
     let newTeamArray = groups[group1].concat(groups[group2]);
     randomizeDraftOrder(newTeamArray);
     let mappedTeamArray = newTeamArray.map(teamName =>{
@@ -34,15 +30,35 @@ function randomizeDraftOrder(newTeamArray){
     }
 }
 
-export function saveTeamsToStorage(newTeamArray){
-    localStorage.setItem('team-array', JSON.stringify(newTeamArray));
+export function saveTeamsToStorage(teamArray){
+    localStorage.setItem(`team-array${group1}${group2}`, JSON.stringify(teamArray));
 }
 
 export function getTeamsFromStorage(){
-    return JSON.parse(localStorage.getItem('team-array'));
+    return JSON.parse(localStorage.getItem(`team-array${group1}${group2}`));
 }
 
-export function removeTeamsFromStorage(){
-    localStorage.removeItem('team-array');
+function removeTeamsFromStorage(){
+    localStorage.removeItem(`team-array${group1}${group2}`);
 }
 
+export function saveTeams(){
+    saveTeamsToStorage(teamArray);
+}
+
+export function resetTeams(){
+    removeTeamsFromStorage();
+    loadTeamArray();
+}
+
+export function resetTeamPicks(){
+    teamArray.forEach(team =>{
+        undraftFirstPick(team);
+        undraftSecondPick(team);
+    });
+    saveTeamsToStorage(teamArray);
+}
+
+export function resetTeamOrder(){
+    resetTeams();
+}
