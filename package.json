@@ -1,0 +1,17 @@
+{
+  "name": "algs-poi-mock-draft",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "startServer": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4"
+  }
+}
