@@ -21,13 +21,14 @@
     </nav>
     <nav class="login-btns">
         <% if (user){ %>
+            <div style="display:inline-block;" class="btn">Signed in as <%=user.username%></div>
             <form style="display:inline-block;" class="logout-form" action="/account/logout" method="post">
                 <button class="btn logout-btn" type="submit">Logout</button>
             </form>
         <% } else{ %>
         <a class="btn" href="/account/login">Login</a>
-        <% } %>
         <a class="btn" href="/account/signup">Signup</a>
+        <% } %>
         <a class="btn" href="/saved-drafts">View Saved Drafts</a>
        
     </nav>

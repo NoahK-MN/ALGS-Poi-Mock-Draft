@@ -9,32 +9,22 @@
     <link rel="stylesheet" href="/styles/form.css">
 </head>
 <body>
-    <header class="header">
-        <div class="website-title">
-            ALGS MOCK DRAFT
-        </div>
-        <nav class="links-to-drafts">
-            <a class="btn" href="/">Home</a>
-            <a class="btn" href="/draft/AvsB">A vs. B</a>
-            <a class="btn" href="/draft/AvsC">A vs. C</a>
-            <a class="btn" href="/draft/BvsC">B vs. C</a>
-        </nav>
-        <nav class="login-btns">
-            <a class="btn" href="/account/login">Login</a>
-            <a class="btn" href="/account/signup">Signup</a>
-            <a class="btn" href="/saved-drafts">View Saved Drafts</a>
-        </nav>
-    </header>
-
     <form class="login-form" action="/account/login" method="POST">
         <h1 class="login-header">Login Information</h1>
         <div>
-            <input id="username-bar" type="text" name="username"  placeholder="Username" required>
+            <input id="username-bar" type="text" name="username"  placeholder="Username" value ="<%=username%>" required>
         </div>
         <div>
-            <input id="password-bar"  type="password" name="password" placeholder="Password"required>
+            <input id="password-bar"  type="password" name="password" placeholder="Password"  value ="<%=password%>" required>
         </div>
-        <input class="btn login-btn" type="submit" value="Login">
+        <% if (message){ %>
+            <div><%= message%></div>
+            <% } %>
+            <div class="login-btns">
+                <a class="btn return-btn" href="/">Home</a>
+                <input class="btn login-btn" type="submit" value="Login">
+                <a class="btn signup-btn" href="/account/signup">Create Account</a>
+            </div>
     </form>
 </body>
 </html>
