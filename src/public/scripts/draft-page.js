@@ -1,6 +1,6 @@
 import { loadTeamArray, saveTeams, teamArray } from "./teams.js";
 import { loadPoiArrays, savePois, spPoiArray, wePoiArray} from "./pois.js";
-import { attemptTodraftPoi, attemptToUndoPrevSelection, indexOfDraft, loadIndexOFDraft, resetDraftOrder, resetDraftPicks, isTeamDrafting } from "./draft-operations.js";
+import { attemptTodraftPoi, attemptToUndoPrevSelection, indexOfDraft, loadIndexOFDraft, resetDraftOrder, resetDraftPicks, isTeamDrafting, findIndexOfTeamDrafting } from "./draft-operations.js";
 export const group1 = document.querySelector('.group1').innerText;
 export const group2 = document.querySelector('.group2').innerText;
 const undoButton = document.querySelector('.undo-btn');
@@ -14,7 +14,15 @@ function renderPageHTML(){
     loadIndexOFDraft();
     generatePoiHTML();
     generateTeamHTML();
-    document.querySelector('.index').innerHTML = indexOfDraft;
+    let indexOfTeamDrafting = findIndexOfTeamDrafting(indexOfDraft);
+    let team = teamArray[indexOfTeamDrafting];
+    if (indexOfDraft !== 40){
+        document.querySelector('.draft-message').innerText = `Pick #${indexOfDraft+1} ${team.teamName}`;
+    } else{
+        document.querySelector('.draft-message').innerText = 'Draft is Over';
+    }
+    // document.querySelector('.index').innerHTML = indexOfDraft; implement this properly 
+    //where it says the team name as well as the current draft pick
 }
 
 function generateTeamHTML(){

@@ -69,7 +69,7 @@ function draftPoi(poi, team){
  * finally if the draft is over (we reach index 40) we want to just look at the first index of the draft since
  * this will cause the our validation function will see the draft is over 
  */ 
-function findIndexOfTeamDrafting(index){
+export function findIndexOfTeamDrafting(index){
     if (index <= 19) return index 
     index -= 20; 
     return (19 - index >= 0) ? (19-index) : 0;
@@ -92,10 +92,12 @@ function saveDraftIndexToStorage(){
 function removeDraftIndexFromStorage(){
     localStorage.removeItem(`index${group1}${group2}`);
 }
+
 export function resetDraftIndex(){
     removeDraftIndexFromStorage();
     loadIndexOFDraft();
 }
+
 /**This function attempts to undo the user's previous selection 
  * The only reason we can't undo a previous selection is if there have been no selections 
  * only we decrease the draft index to go back to the team with the previous pick and undo their previous pick
@@ -122,6 +124,7 @@ function undoPreviousSelection(team){
         undraftFirstPick(team);
     }
 }
+
 function checkForValidUndo(){
     if (indexOfDraft === 0 && !teamArray[0].firstPick){ //this means we haven't had any picks in the draft
         return false;
@@ -140,6 +143,7 @@ export function resetDraftOrder(){
     resetPois();
     resetDraftIndex();
 }
+
 export function isTeamDrafting(index){
     return index === findIndexOfTeamDrafting(indexOfDraft) && indexOfDraft < 40;
 }
