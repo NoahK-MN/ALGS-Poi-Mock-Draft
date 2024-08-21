@@ -1,0 +1,36 @@
+body{
+    background-color: rgb(75,75, 75);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.login-header{
+    margin: 10px;
+}
+.login-form{
+    background-color: white;
+    display: inline-block;
+    padding: 20px;
+}
+#username-bar, #password-bar{
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 313px;
+    font-family: inherit;
+}
+#password-bar{
+    margin-bottom: 15px;
+}
+.error-message{
+    color: black;
+    margin-top: 0;
+    font-weight: bold;
+    text-wrap: wrap;
+}
+.login-btn,.return-btn,.signup-btn{
+    color: black;
+}

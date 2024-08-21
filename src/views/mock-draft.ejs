@@ -3,11 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mock Draft</title>
     <link rel="stylesheet" href="/styles/draftpage.css">
+    <link rel="stylesheet" href="/styles/btn.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/body.css">
 </head>
 <body>
-    <div style="display:flex;">
+    <header class="header">
+        <div class="website-title">
+            ALGS MOCK DRAFT
+        </div>
+        <nav class="links-to-drafts">
+            <a class="btn" href="/">Home</a>
+            <a class="btn" href="/draft/AvsB">A vs. B</a>
+            <a class="btn" href="/draft/AvsC">A vs. C</a>
+            <a class="btn" href="/draft/BvsC">B vs. C</a>
+        </nav>
+        <nav class="login-btns">
+            <a class="btn" href="/account/login">Login</a>
+            <a class="btn" href="/account/signup">Signup</a>
+            <a class="btn" href="/saved-drafts">View Saved Drafts</a>
+        </nav>
+        </header>
+        
+    <div class="group-info">
+        <div class="draft-text">Mock Draft: </div>
         <div class="group1"><%= locals.group1 %></div>
         <div class="versus"> vs. </div>
         <div class="group2"><%= locals.group2 %></div>
@@ -16,10 +37,12 @@
     <div class="sp-pois-container"></div>
     <div class="map-title we-map-title">World's Edge Pois</div>
     <div class="we-pois-container"></div>
-    <button class="btn reset-team-order-btn">Reset Team Order</button>
-    <button class="btn reset-team-picks-btn">Reset Team Picks</button>
-    <button class="btn undo-btn">Undo Previous Pick</button>
-    <button class="btn save-draft-btn">Save Draft</button>
+    <div class="draft-btns">
+        <button class="btn reset-team-order-btn">Reset Team Order</button>
+        <button class="btn reset-team-picks-btn">Reset Team Picks</button>
+        <button class="btn undo-btn">Undo Previous Pick</button>
+        <button class="btn save-draft-btn">Save Draft</button>
+    </div>
     <div class="index"></div>
     <div class="team-container"></div>
     <script type="module" src="/scripts/draft-page.js"></script>

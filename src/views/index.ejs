@@ -3,11 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/styles/body.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/btn.css">
+    <title>ALGS Mock Draft</title>
 </head>
 <body>
-    <a href="/draft/AvsB">Mock Draft for A vs. B</a>
-    <a href="/draft/AvsC">Mock Draft for A vs. C</a>
-    <a href="/draft/BvsC">Mock Draft for B vs. C</a>
+    <header class="header">
+    <div class="website-title">
+        ALGS MOCK DRAFT
+    </div>
+    <nav class="links-to-drafts">
+        <a class="btn" href="/">Home</a>
+        <a class="btn" href="/draft/AvsB">A vs. B</a>
+        <a class="btn" href="/draft/AvsC">A vs. C</a>
+        <a class="btn" href="/draft/BvsC">B vs. C</a>
+    </nav>
+    <nav class="login-btns">
+        <% if (user){ %>
+            <form style="display:inline-block;" class="logout-form" action="/account/logout" method="post">
+                <button class="btn logout-btn" type="submit">Logout</button>
+            </form>
+        <% } else{ %>
+        <a class="btn" href="/account/login">Login</a>
+        <% } %>
+        <a class="btn" href="/account/signup">Signup</a>
+        <a class="btn" href="/saved-drafts">View Saved Drafts</a>
+       
+    </nav>
+    </header>
+
 </body>
 </html>

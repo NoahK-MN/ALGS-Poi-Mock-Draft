@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up Page</title>
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/btn.css">
+    <link rel="stylesheet" href="/styles/form.css">
+</head>
+<body>
+    <header class="header">
+        <div class="website-title">
+            ALGS MOCK DRAFT
+        </div>
+        <nav class="links-to-drafts">
+            <a class="btn" href="/">Home</a>
+            <a class="btn" href="/draft/AvsB">A vs. B</a>
+            <a class="btn" href="/draft/AvsC">A vs. C</a>
+            <a class="btn" href="/draft/BvsC">B vs. C</a>
+        </nav>
+        <nav class="login-btns">
+            <a class="btn" href="/account/login">Login</a>
+            <a class="btn" href="/account/signup">Signup</a>
+            <a class="btn" href="/saved-drafts">View Saved Drafts</a>
+        </nav>
+    </header>
+    <form class="login-form" action="/account/login" method="POST">
+        <h1 class="login-header">Sign up Information</h1>
+        <div>
+            <input id="username-bar" type="text" name="username"  placeholder="Username" required>
+        </div>
+        <div>
+            <input id="password-bar"  type="password" name="password" placeholder="Password"required>
+        </div>
+        <input class="btn login-btn" type="submit" value="Sign up">
+    </form>
+</body>
+</html>

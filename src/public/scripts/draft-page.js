@@ -1,6 +1,6 @@
 import { loadTeamArray, saveTeams, teamArray } from "./teams.js";
 import { loadPoiArrays, savePois, spPoiArray, wePoiArray} from "./pois.js";
-import { attemptTodraftPoi, attemptToUndoPrevSelection, indexOfDraft, loadIndexOFDraft, resetDraftOrder, resetDraftPicks } from "./draft-operations.js";
+import { attemptTodraftPoi, attemptToUndoPrevSelection, indexOfDraft, loadIndexOFDraft, resetDraftOrder, resetDraftPicks, isTeamDrafting } from "./draft-operations.js";
 export const group1 = document.querySelector('.group1').innerText;
 export const group2 = document.querySelector('.group2').innerText;
 const undoButton = document.querySelector('.undo-btn');
@@ -14,19 +14,23 @@ function renderPageHTML(){
     loadIndexOFDraft();
     generatePoiHTML();
     generateTeamHTML();
-    document.querySelector('.index').innerText = indexOfDraft;
+    document.querySelector('.index').innerHTML = indexOfDraft;
 }
 
 function generateTeamHTML(){
-    let teamHTML = "";
-    teamArray.forEach(team =>{
+    let teamHTML = 
+    `<div class="team-container-title">Team Name</div>
+    <div class="team-container-title">First Pick</div>
+    <div class="team-container-title">Second Pick</div>`;
+    teamArray.forEach((team,index) =>{
+        let isDrafting = isTeamDrafting(index) ? 'team-drafting' : '';
         let teamName = `${team.teamName}`;
-        let firstPick = team.firstPick ? `${team.firstPick}` : 'FIRST PICK';
-        let secondPick = team.secondPick ? `${team.secondPick}` : 'SECOND PICK';
+        let firstPick = team.firstPick ? `${team.firstPick}` : ' ';
+        let secondPick = team.secondPick ? `${team.secondPick}` : ' ';
         teamHTML += 
-        `<div>${teamName}</div>
-        <div>${firstPick}</div>
-        <div>${secondPick}</div>`
+        `<div class="${isDrafting}">${teamName}</div>
+        <div class="${isDrafting}">${firstPick}</div>
+        <div class="${isDrafting}">${secondPick}</div>`
     });
     document.querySelector('.team-container').innerHTML = teamHTML; 
 }
@@ -60,7 +64,7 @@ function generatePoiHTML(){
 }
 
 undoButton.addEventListener('click', () =>{
-    if(attemptToUndoPrevSelection()){
+    if(attemptToUndoPrevSelection()){ //only re-renders page if the undo was successful
         saveTeams();
         savePois();
         renderPageHTML();

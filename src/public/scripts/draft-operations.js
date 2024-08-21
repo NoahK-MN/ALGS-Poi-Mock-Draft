@@ -16,7 +16,7 @@ export function loadIndexOFDraft(){
 
 export function attemptTodraftPoi(poiName){
     let poi = findPoi(poiName);
-    let indexOfTeamDrafting = findTeamDrafting(indexOfDraft);
+    let indexOfTeamDrafting = findIndexOfTeamDrafting(indexOfDraft);
     let teamDrafting = teamArray[indexOfTeamDrafting];
     let message = checkForValidSelection(poi, teamDrafting);
     if (message){ //check for ValidSelection only returns a message if the pick was invalid. 
@@ -69,7 +69,7 @@ function draftPoi(poi, team){
  * finally if the draft is over (we reach index 40) we want to just look at the first index of the draft since
  * this will cause the our validation function will see the draft is over 
  */ 
-function findTeamDrafting(index){
+function findIndexOfTeamDrafting(index){
     if (index <= 19) return index 
     index -= 20; 
     return (19 - index >= 0) ? (19-index) : 0;
@@ -101,11 +101,11 @@ export function resetDraftIndex(){
  * only we decrease the draft index to go back to the team with the previous pick and undo their previous pick
  */
 export function attemptToUndoPrevSelection(){
-    if (indexOfDraft === 0 && !teamArray[0].firstPick){ //this means we haven't had any picks in the draft
-        return false;
+    if(!checkForValidUndo()){
+        return;
     }
     decreaseDraftIndex();
-    let indexOfTeamDrafting = findTeamDrafting(indexOfDraft);
+    let indexOfTeamDrafting = findIndexOfTeamDrafting(indexOfDraft);
     let teamDrafting = teamArray[indexOfTeamDrafting];
     undoPreviousSelection(teamDrafting);
     return true;
@@ -122,6 +122,12 @@ function undoPreviousSelection(team){
         undraftFirstPick(team);
     }
 }
+function checkForValidUndo(){
+    if (indexOfDraft === 0 && !teamArray[0].firstPick){ //this means we haven't had any picks in the draft
+        return false;
+    }
+    return true;
+}
 
 export function resetDraftPicks(){
     resetTeamPicks();
@@ -133,4 +139,7 @@ export function resetDraftOrder(){
     resetTeamOrder();
     resetPois();
     resetDraftIndex();
+}
+export function isTeamDrafting(index){
+    return index === findIndexOfTeamDrafting(indexOfDraft) && indexOfDraft < 40;
 }

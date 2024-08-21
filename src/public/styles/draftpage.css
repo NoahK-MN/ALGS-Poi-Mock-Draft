@@ -49,6 +49,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-left: 15px; /*Matches margin of sp-container + sp-button*/
+    row-gap: 5px;
 }
 .team-title{
     font-size: 20px;
@@ -57,18 +58,18 @@
 }
 .group-info{
     display: flex;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
+    margin-top: 30px;
+    margin-left: 34%;
 }
 .site-title{
     font-size: 30px;
     font-weight: bold;
     margin-left: 23px;
 }
-.group1{
+.versus{
     margin-right: 5px;
-}
-.group2{
     margin-left: 5px;
 }
 .view-drafts-btn{
@@ -99,4 +100,16 @@
 }
 .we-map-title{
     background-color: rgb(50,50,255);
+}
+.draft-text{
+    margin-right: 5px;
+}
+.team-container-title{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.draft-btns{
+    margin-bottom: 10px;
+    margin-left: 15px;
 }
