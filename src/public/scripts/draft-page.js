@@ -1,12 +1,13 @@
 import { loadTeamArray, saveTeams, teamArray } from "./teams.js";
 import { loadPoiArrays, savePois, spPoiArray, wePoiArray} from "./pois.js";
 import { attemptTodraftPoi, attemptToUndoPrevSelection, indexOfDraft, loadIndexOFDraft, resetDraftOrder, resetDraftPicks, isTeamDrafting, findIndexOfTeamDrafting } from "./draft-operations.js";
+import { saveDraftToDB } from "./save-draft.js";
 export const group1 = document.querySelector('.group1').innerText;
 export const group2 = document.querySelector('.group2').innerText;
 const undoButton = document.querySelector('.undo-btn');
 const resetPicksButton = document.querySelector('.reset-team-picks-btn');
 const resetTeamOrderButton = document.querySelector('.reset-team-order-btn');
-
+const saveDraftButton = document.querySelector('.save-draft-btn');
 renderPageHTML(); 
 function renderPageHTML(){
     loadPoiArrays();
@@ -89,3 +90,11 @@ resetTeamOrderButton.addEventListener('click', () =>{
     renderPageHTML();
 });
 
+saveDraftButton.addEventListener('click', ()=>{
+    if (indexOfDraft === 40){
+        saveDraftToDB();
+    }
+    else {
+        alert('You must finish a draft before you can save it');
+    }
+})

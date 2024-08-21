@@ -10,9 +10,6 @@ const DraftSchema = new Schema({
         type: String,
         required: true
     },
-    draftName: {
-        type: String
-    },
     draftResults : {
         type: Array,
         required: true

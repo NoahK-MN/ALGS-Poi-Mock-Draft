@@ -4,6 +4,7 @@ const path = require('path');
 const indexRouter = require('./src/routes/index');
 const draftRouter = require('./src/routes/draft');
 const accountRouter = require('./src/routes/account');
+const savedDraftRouter = require('./src/routes/saved-drafts');
 const passport = require('passport');
 const session = require('express-session');
 const bodyParser = require('body-parser');
@@ -40,6 +41,7 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/draft', draftRouter);
 app.use('/account', accountRouter);
+app.use('/saved-drafts', savedDraftRouter);
 
 app.listen(3000);
 

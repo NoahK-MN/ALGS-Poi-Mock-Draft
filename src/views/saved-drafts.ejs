@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/body.css">
+    <link rel="stylesheet" href="/styles/btn.css">
+    <link rel="stylesheet" href="/styles/saved-drafts.css">
+    <title>Saved Drafts</title>
+</head>
+<body>
+    <% if (locals.message){ %>
+        <div><%=locals.message%></div>
+        <% } else if (locals.drafts && locals.drafts.length ===0){  %>
+    <div>No Saved Drafts</div>
+    <% } %>
+        <div class="drafts">
+    <% drafts.forEach((draft,index) => { %> 
+            <a class="btn draft-btn" href="/saved-drafts/<%=draft.id%>"><%=`Saved Draft ${index+1} (${draft.groups})`%></a>
+    <% }) %>
+    </div>
+    <div class="return-btns">
+        <a class="btn return-btn" href="/">Home</a>
+        <a class="btn return-btn" href="/draft/AvsB">A vs. B</a>
+        <a class="btn return-btn" href="/draft/AvsC">A vs. C</a>
+        <a class="btn return-btn" href="/draft/BvsC">B vs. C</a>
+    </div>
+</body>
+</html>

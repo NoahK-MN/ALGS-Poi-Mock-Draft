@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/body.css">
+    <link rel="stylesheet" href="/styles/btn.css">
+    <link rel="stylesheet" href="/styles/view-draft.css">
+    <title>Saved Draft</title>
+</head>
+<body>
+    <script src="/scripts/savedDraft.js" teams="<%=teams%>"></script>
+    <div class="team-container">
+        <div class="col-title">Team Name</div>
+        <div class="col-title">First Pick</div>
+        <div class="col-title">Second Pick</div>
+    <% teams.forEach(team =>{%>
+            <div> <%=team.teamName%> </div>
+            <div> <%=team.firstPick%> </div>
+            <div> <%=team.secondPick%> </div>
+        <% }) %>
+    </div>
+    <footer class="footer">
+        <nav class="nav-bar">
+            <a class="btn return-btn" href="/">Back to Draft Page</a>
+            <a class="btn return-btn" href="/saved-drafts">Back to Saved Drafts</a>
+        </nav>
+    </footer>
+</body>
+</html>
