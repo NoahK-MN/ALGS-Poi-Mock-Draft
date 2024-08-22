@@ -29,14 +29,15 @@ function renderPageHTML(){
 }
 
 function generateTeamHTML(){
-    let editing = editDraftButton.classList.contains('is-editing') ? 'team-btn' : '';
+    const isEditingEnabled = editDraftButton.classList.contains('is-editing');
+    let editing = isEditingEnabled ? 'team-btn' : '';
     let teamHTML = 
     `<div class="team-container-title">Pick</div>
     <div class="team-container-title">Team Name</div>
     <div class="team-container-title">First Pick</div>
     <div class="team-container-title">Second Pick</div>`;
     teamArray.forEach((team,index) =>{
-        let isDrafting = isTeamDrafting(index) ? 'team-drafting' : '';
+        let isDrafting = isTeamDrafting(index) && !isEditingEnabled  ? 'team-drafting' : '';
         let teamName = `${team.teamName}`;
         let firstPick = team.firstPick ? `${team.firstPick}` : ' ';
         let secondPick = team.secondPick ? `${team.secondPick}` : ' ';
