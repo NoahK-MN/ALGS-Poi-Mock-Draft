@@ -4,7 +4,7 @@ const Draft = require('../models/draft');
 router.get('/', async (req, res)=>{
     let user = req.user;
     if (!user){
-        res.render('saved-drafts', []);
+        res.render('saved-drafts', {message: 'You must be signed in to view drafts', drafts: []});
         return;
     }
     const username = user.username; 
@@ -20,7 +20,6 @@ router.post('/', async(req,res) =>{
     const username = req.body.username; 
     const groups = req.body.groups;
     const draftResults = req.body.teamArray;
-    console.log(username, groups, draftResults);
     try {
         let draft = new Draft({user: username, groups, draftResults});
         await draft.save();

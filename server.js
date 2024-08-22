@@ -20,8 +20,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/public/images/', express.static('./public/images'));
 app.use(express.static('./src/public')); 
 
-mongoose.connect('mongodb://localhost/apex_db')
-    .then(()=> console.log("Connected to Mongo"));
+mongoose.connect('mongodb://localhost/apex_db');
 
 app.use(session({
     secret: "noah",

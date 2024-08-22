@@ -2,12 +2,14 @@ import { loadTeamArray, saveTeams, teamArray } from "./teams.js";
 import { loadPoiArrays, savePois, spPoiArray, wePoiArray} from "./pois.js";
 import { attemptTodraftPoi, attemptToUndoPrevSelection, indexOfDraft, loadIndexOFDraft, resetDraftOrder, resetDraftPicks, isTeamDrafting, findIndexOfTeamDrafting } from "./draft-operations.js";
 import { saveDraftToDB } from "./save-draft.js";
+import { attemptToSwapTeam } from "./edit-order.js";
 export const group1 = document.querySelector('.group1').innerText;
 export const group2 = document.querySelector('.group2').innerText;
 const undoButton = document.querySelector('.undo-btn');
 const resetPicksButton = document.querySelector('.reset-team-picks-btn');
 const resetTeamOrderButton = document.querySelector('.reset-team-order-btn');
 const saveDraftButton = document.querySelector('.save-draft-btn');
+const editDraftButton = document.querySelector('.edit-team-order-btn');
 renderPageHTML(); 
 function renderPageHTML(){
     loadPoiArrays();
@@ -27,8 +29,10 @@ function renderPageHTML(){
 }
 
 function generateTeamHTML(){
+    let editing = editDraftButton.classList.contains('is-editing') ? 'team-btn' : '';
     let teamHTML = 
-    `<div class="team-container-title">Team Name</div>
+    `<div class="team-container-title">Pick</div>
+    <div class="team-container-title">Team Name</div>
     <div class="team-container-title">First Pick</div>
     <div class="team-container-title">Second Pick</div>`;
     teamArray.forEach((team,index) =>{
@@ -37,11 +41,15 @@ function generateTeamHTML(){
         let firstPick = team.firstPick ? `${team.firstPick}` : ' ';
         let secondPick = team.secondPick ? `${team.secondPick}` : ' ';
         teamHTML += 
-        `<div class="${isDrafting}">${teamName}</div>
+        `<div class="draft-position">${index+1}</div>
+        <div class="${isDrafting} team-name ${editing}">${teamName}</div>
         <div class="${isDrafting}">${firstPick}</div>
         <div class="${isDrafting}">${secondPick}</div>`
     });
     document.querySelector('.team-container').innerHTML = teamHTML; 
+    if (editDraftButton.classList.contains('is-editing')){
+        generateTeamButtonEventListeners();
+    }
 }
 
 function generatePoiHTML(){
@@ -60,6 +68,10 @@ function generatePoiHTML(){
     let poiButtons = document.querySelectorAll('.poi-btn');
     poiButtons.forEach(button =>{
         button.addEventListener('click', () =>{
+            if (editDraftButton.classList.contains('is-editing')){
+                alert('You must stop editing before you can start drafting');
+                return;
+            }
             let poiName = button.innerText;
             let message = attemptTodraftPoi(poiName);
             if(message){
@@ -97,4 +109,31 @@ saveDraftButton.addEventListener('click', ()=>{
     else {
         alert('You must finish a draft before you can save it');
     }
-})
+});
+
+editDraftButton.addEventListener('click', ()=>{
+    if (indexOfDraft !== 0){
+        alert(`You Can't edit the order of draft that has already started`);
+        return;
+    }
+    if (!editDraftButton.classList.contains('is-editing')){
+        editDraftButton.classList.add('is-editing');
+        generateTeamHTML();
+    }
+    else{
+        editDraftButton.classList.remove('is-editing');
+        generateTeamHTML();
+    }
+});
+
+function generateTeamButtonEventListeners(){
+    let teamButtons = document.querySelectorAll('.team-btn');
+        teamButtons.forEach(button =>{
+            button.addEventListener('click', ()=>{
+                console.log(button.innerText);
+                if (attemptToSwapTeam(button)){
+                    generateTeamHTML();
+                }
+            });
+        });
+}

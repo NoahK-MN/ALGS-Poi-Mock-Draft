@@ -62,3 +62,14 @@ export function resetTeamPicks(){
 export function resetTeamOrder(){
     resetTeams();
 }
+
+export function findIndexOfTeam(teamName){
+    return teamArray.findIndex(team => team.teamName === teamName);
+}
+
+export function swapIndexOfTeams(index1, index2){
+    let temp = teamArray[index1];
+    teamArray[index1] = teamArray[index2];
+    teamArray[index2] = temp;
+    saveTeams();
+}
