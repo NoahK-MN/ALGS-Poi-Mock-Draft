@@ -16,6 +16,7 @@ body{
     height: 45px;
     display: flex;
     align-items: center;
+    background-color: rgb(60,60,60);
 }
 .btn{
     margin-bottom: 0;

@@ -1,0 +1,10 @@
+li{
+    margin-top: 10px;
+}
+#list-title{
+    font-weight: bold;
+}
+#snake-draft{
+    text-decoration: underline;
+    color: coral;
+}
